@@ -1,0 +1,35 @@
+{
+  "profile": {
+    "name": "Raghav",
+    "email": "raghvendrapratap1552004gmail.com",
+    "avatar": "https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg",
+    "totalBudget": 6000,
+    "password":"",
+    "expenses": [
+      { "id": 1, "title": "Food", "category": "Groceries", "amount": 765.44, "date": "2025-07-01" },
+      { "id": 2, "title": "Rent", "category": "Housing", "amount": 1000, "date": "2025-07-02" }
+    ]
+  }
+,
+  "dashboard": {
+    "totalToday": 125.50,
+    "totalMonth": 875.00,
+    "transactions": [
+      { "date": "2025-07-20", "category": "Food", "amount": 55.50 },
+      { "date": "2025-07-21", "category": "Transport", "amount": 70.00 },
+      { "date": "2025-07-22", "category": "Entertainment", "amount": 100.00 }
+    ]
+  },
+  "settings": {
+    "name":"Raghav",
+    "theme": ["light","dark"],
+    "currency": ["INR","Dollar"],
+    "categories": [
+      "Food",
+      "Transportation",
+      "Entertainment",
+      "Utilities",
+      "Rent"
+    ]
+  }
+}

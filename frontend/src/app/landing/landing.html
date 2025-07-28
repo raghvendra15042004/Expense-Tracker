@@ -1,0 +1,79 @@
+<div class="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-6xl mx-auto space-y-12">
+    
+    <!-- Summary Boxes -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div class="bg-blue-50 text-blue-900 p-6 rounded-2xl shadow hover:shadow-md transition">
+        <h2 class="text-lg font-semibold tracking-wide">Monthly Spend</h2>
+        <p class="text-3xl font-extrabold mt-2">₹{{ monthlyTotal() }}</p>
+      </div>
+      <div class="bg-green-50 text-green-900 p-6 rounded-2xl shadow hover:shadow-md transition">
+        <h2 class="text-lg font-semibold tracking-wide">Annual Spend</h2>
+        <p class="text-3xl font-extrabold mt-2">₹{{ annualTotal() }}</p>
+      </div>
+    </div>
+
+    <!-- Expenses Table with Pagination -->
+    <div class="bg-white border border-gray-200 rounded-2xl shadow-xl overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="min-w-full text-sm text-gray-800">
+          <thead class="bg-gray-100 text-gray-600 text-xs uppercase tracking-wider">
+            <tr>
+              <th class="px-6 py-4 text-left">Date</th>
+              <th class="px-6 py-4 text-left">Category</th>
+              <th class="px-6 py-4 text-left">Amount (₹)</th>
+              <th class="px-6 py-4 text-left">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let expense of paginatedExpenses"
+              class="border-t border-gray-200 hover:bg-gray-50 transition"
+            >
+              <td class="px-6 py-4 text-sm font-medium text-gray-600 ">{{ expense.date | date: 'mediumDate' }}</td>
+              <td class="px-6 py-4 text-sm font-medium text-gray-600 ">{{ expense.category || 'N/A' }}</td>
+              <td class="px-6 py-4 text-xl text-gray-900">₹{{ expense.amount }}</td>
+              <td class="px-6 py-4">
+                <button
+                  (click)="deleteExpense(expense._id)"
+                  class="text-gray-500 hover:text-gray-700 transition"
+                  title="Delete Expense"
+                >
+                  <mat-icon class="text-xl">delete</mat-icon>
+                </button>
+              </td>
+            </tr>
+            <tr *ngIf="paginatedExpenses.length === 0">
+              <td colspan="4" class="text-center text-gray-400 py-6">
+                No expenses to display.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination Controls -->
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-4 px-6 py-4 bg-gray-50 rounded-b-2xl">
+        <div class="text-sm text-gray-600 font-medium">
+          Page {{ currentPage }} of {{ totalPages }}
+        </div>
+        <div class="flex items-center gap-3">
+          <button
+            (click)="prevPage()"
+            [disabled]="currentPage === 1"
+            class="px-5 py-2 rounded-full bg-white text-gray-700 font-medium shadow-sm hover:bg-gray-100 transition disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            ‹ Prev
+          </button>
+          <button
+            (click)="nextPage()"
+            [disabled]="currentPage === totalPages"
+            class="px-5 py-2 rounded-full bg-white text-gray-700 font-medium shadow-sm hover:bg-gray-100 transition disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            Next ›
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
