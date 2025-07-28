@@ -86,7 +86,7 @@ app.add_middleware(
 )
 
 # MongoDB connection
-MONGO_URL = "mongodb+srv://raghavpratap:AgAQgKbnjyEYsWfr@cluster0.apayhzn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+MONGO_URL = ""
 client = MongoClient(MONGO_URL, tls=True)
 db = client["Testing"]
 expense_collection = db["expenses"]
